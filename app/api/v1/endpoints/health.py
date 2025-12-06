@@ -1,5 +1,14 @@
+# app/api/v1/endpoints/health.py
 
+from fastapi import APIRouter
+from app.core.config import settings
 
-@app.get("/health", tags=["Health"], summary="Health Check Endpoint")
+router = APIRouter()
+
+@router.get("/health", tags=["health"])
 def health_check():
-    return {"status": "healthy"}
+    return {
+        "status": "ok",
+        "app": settings.APP_NAME,
+        "env": settings.ENV,
+    }
